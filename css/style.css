@@ -45,6 +45,16 @@ body {
 .list {
   list-style: none;
 }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
 .container {
   width: 1200px;
   margin: 0 auto;
@@ -223,9 +233,6 @@ body {
 
 .benefits {
   padding-bottom: 47px;
-}
-.visually-hidden {
-  visibility: hidden;
 }
 
 .benefits-list {
@@ -497,6 +504,7 @@ body {
 }
 .footer-form {
   margin-left: 93px;
+  margin-right: auto;
 }
 .footer-form-title {
   font-weight: bold;
@@ -521,6 +529,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 4px;
   margin-right: 12px;
+  color: var(--primary-title-color);
+
   transition: border-color var(--transition-duration) var(--transition-timing-function);
 }
 .footer-email::placeholder {
@@ -529,6 +539,9 @@ body {
   line-height: 1.25;
   letter-spacing: 0.03em;
   color: rgba(255, 255, 255, 0.6);
+}
+.footer-email:not(:placeholder-shown) {
+  color: var(--primary-title-color);
 }
 .footer-email:focus {
   border-color: var(--accent-color);
@@ -678,8 +691,8 @@ body {
   height: 11px;
   transition: fill var(--transition-duration) var(--transition-timing-function);
 }
-.button-icon:focus,
-.button-icon:hover {
+.close-btn:focus .button-icon,
+.close-btn:hover .button-icon {
   fill: var(--accent-color);
 }
 .modal-title {
@@ -717,10 +730,13 @@ body {
   transition: border-color var(--transition-duration) var(--transition-timing-function);
 }
 .modal-input:focus,
-.modal-textarea:focus {
+.modal-input:hover,
+.modal-textarea:focus,
+.modal-textarea:hover {
   border-color: var(--accent-color);
 }
-.modal-input:focus + .input-icon {
+.modal-input:focus + .input-icon,
+.modal-input:hover + .input-icon {
   fill: var(--accent-color);
 }
 .input-icon {
@@ -737,9 +753,11 @@ body {
   border-radius: 4px;
   resize: none;
   padding: 16px 12px;
+  margin-bottom: 20px;
   outline: none;
   transition: border-color var(--transition-duration) var(--transition-timing-function);
 }
+
 .check-text {
   font-weight: normal;
   font-size: 14px;
@@ -759,10 +777,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: border-color var(--transition-duration) var(--transition-timing-function);
+}
+.modal-checkbox:hover + .check-text span,
+.modal-checkbox:focus + .check-text span {
+  border-color: var(--accent-color);
 }
 .modal-checkbox:checked + .check-text span {
   background-color: var(--accent-color);
   border: none;
+}
+.check-link {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.03em;
+  text-decoration-line: underline;
+  color: var(--accent-color);
+  margin-left: 5px;
 }
 .modal-btn {
   display: block;
